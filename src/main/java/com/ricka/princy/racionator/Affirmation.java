@@ -64,6 +64,6 @@ public class Affirmation {
     }
 
     private String combinerContenu(Affirmation a,Affirmation b, String separateur){
-        return String.format("%s %s %s", a, b, separateur);
+        return String.format("%s %s %s", a.contenu, b.contenu, separateur);
     }
 }
