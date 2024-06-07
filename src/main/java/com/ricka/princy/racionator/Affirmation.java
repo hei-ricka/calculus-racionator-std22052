@@ -8,20 +8,29 @@ public class Affirmation {
     private final TypeDAffirmation typeDAffirmation;
 
     public Affirmation et(Affirmation affirmation){
-        final String nouveau_contenu = combinerContenu(this, affirmation, "ou");
+        final String nouveauCotenu = combinerContenu(this, affirmation, "ou");
 
         if(estVrai(this) && estVrai(affirmation)){
-            return new Affirmation(nouveau_contenu, TypeDAffirmation.VERITE);
+            return new Affirmation(nouveauCotenu, TypeDAffirmation.VERITE);
         }
         if(estFaux(this) || estFaux(affirmation)){
-            return new Affirmation(nouveau_contenu, TypeDAffirmation.MENSONGE);
+            return new Affirmation(nouveauCotenu, TypeDAffirmation.MENSONGE);
         }
 
-        return new Affirmation(nouveau_contenu, TypeDAffirmation.AFFIRMATION);
+        return new Affirmation(nouveauCotenu, TypeDAffirmation.AFFIRMATION);
     }
 
     public Affirmation ou(Affirmation affirmation){
-        throw new Error("Not implemented");
+        final String nouveauCotenu = combinerContenu(this, affirmation, "ou");
+
+        if(estVrai(this) || estVrai(affirmation)){
+            return new Affirmation(nouveauCotenu, TypeDAffirmation.VERITE);
+        }
+        if(estJenesaispas(this) || estJenesaispas(affirmation)){
+            return new Affirmation(nouveauCotenu, TypeDAffirmation.AFFIRMATION);
+        }
+
+        return new Affirmation(nouveauCotenu, TypeDAffirmation.MENSONGE);
     }
 
     public Affirmation donc(Affirmation affirmation){
